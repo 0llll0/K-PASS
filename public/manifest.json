@@ -1,0 +1,25 @@
+{
+  "name": "K-Pass — Korean Admin Guide",
+  "short_name": "K-Pass",
+  "description": "AI-powered Korean administrative guide for foreign residents in Pohang-si",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f6fa",
+  "theme_color": "#1a2b4a",
+  "categories": ["productivity", "utilities"],
+  "lang": "en",
+  "icons": [],
+  "shortcuts": [
+    {
+      "name": "Upload Notice",
+      "url": "/upload",
+      "description": "Analyze a Korean document"
+    },
+    {
+      "name": "Reminders",
+      "url": "/reminders",
+      "description": "View payment reminders"
+    }
+  ]
+}

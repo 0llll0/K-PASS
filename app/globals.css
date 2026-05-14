@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --navy: #1a2b4a;
+  --navy-dark: #0f1d33;
+  --navy-light: #2c4a7c;
+  --accent-blue: #3b6fd4;
+  --orange: #f97316;
+  --red: #ef4444;
+  --green: #22c55e;
+  --gray-bg: #f5f6fa;
+  --gray-card: #ffffff;
+  --gray-border: #e8eaf0;
+  --text-primary: #1a2b4a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f0f2f8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f8;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* App container - mobile-first centered layout */
+.app-container {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: #f5f6fa;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@media (min-width: 431px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .app-container {
+    box-shadow: 0 0 40px rgba(0,0,0,0.12);
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes progress-fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes checkmark {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-progress {
+  animation: progress-fill 2s ease-in-out forwards;
+}
+
+/* Safe area bottom for iOS */
+.pb-safe {
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+.bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom);
+}
