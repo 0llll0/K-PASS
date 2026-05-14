@@ -1,10 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { signInWithGoogle } from '@/lib/auth';
 
-export default function LoginPage() {
+/**
+ * LoginContent handles the actual login logic and UI.
+ * It uses useSearchParams, so it must be wrapped in <Suspense> during prerender.
+ */
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -12,6 +16,8 @@ export default function LoginPage() {
 
   // Check for error in URL
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const errorParam = searchParams.get('error');
     if (errorParam === 'auth_failed') {
       setError('Authentication failed. Please try again.');
@@ -152,5 +158,22 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+/**
+ * Main LoginPage component.
+ * Wraps LoginContent in Suspense to prevent Next.js prerender errors
+ * caused by useSearchParams().
+ */
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#1a2b4a] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-4 border-white/20 border-t-white"></div>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }
